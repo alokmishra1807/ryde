@@ -27,8 +27,7 @@ class BottomNavBar extends StatelessWidget {
         children: [
           _navIcon(Icons.home, 0),
           _navIcon(Icons.directions_car, 1),
-          _navIcon(Icons.chat_bubble_outline, 2),
-          _navIcon(Icons.person_outline, 3),
+            _navIcon(Icons.person_outline, 2),
         ],
       ),
     );

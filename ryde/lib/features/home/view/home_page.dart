@@ -26,7 +26,6 @@ class _HomePageState extends State<HomePage> {
     HomeContentScreen(), // index 0
     HistoryScreen(), // index 1
     ProfileScreen(),
-    ProfileScreen(),
   ];
 
   @override

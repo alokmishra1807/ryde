@@ -13,7 +13,15 @@ class _OnboardingPagesState extends State<OnboardingPages> {
   int pageIndex = 0;
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -23,6 +31,11 @@ class _OnboardingPagesState extends State<OnboardingPages> {
               alignment: Alignment.topRight,
               child: TextButton(
                 onPressed: () {
+                  // e.g. go directly to GetStarted
+                  // Navigator.pushReplacement(
+                  //   context,
+                  //   MaterialPageRoute(builder: (_) => GetStartedPage()),
+                  // );
                 },
                 child: const Text(
                   "Skip",
@@ -31,6 +44,7 @@ class _OnboardingPagesState extends State<OnboardingPages> {
               ),
             ),
 
+            // ---------- PAGES ----------
             Expanded(
               child: PageView(
                 controller: _controller,
@@ -40,126 +54,140 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                 children: [
                   // --------------- PAGE 1 ------------------
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 20),
 
-                        Image.asset(
-                          "assets/images/onboarding1.png",
-                          height: 360,
-                        ),
+                          Image.asset(
+                            "assets/images/onboarding1.png",
+                            // make it responsive instead of fixed 360
+                            height: size.height * 0.35,
+                          ),
 
-                        const SizedBox(height: 20),
+                          const SizedBox(height: 20),
 
-                        RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            style: const TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black, // default color
-                            ),
-                            children: [
-                              const TextSpan(
-                                text: "The best car in your hands with ",
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: const TextSpan(
+                              style: TextStyle(
+                                fontSize: 30, // a bit smaller for small screens
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
                               ),
-                              TextSpan(
-                                text: "Ryde",
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
+                              children: [
+                                TextSpan(
+                                  text:
+                                      "The best car in your hands with ",
                                 ),
-                              ),
-                            ],
+                                TextSpan(
+                                  text: "Ryde",
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
 
-                        const SizedBox(height: 12),
+                          const SizedBox(height: 12),
 
-                        Text(
-                          "Discover the convenience of finding your perfect ride with our Ryde App",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey.shade700,
+                          Text(
+                            "Discover the convenience of finding your perfect ride with our Ryde App",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey.shade700,
+                            ),
                           ),
-                        ),
-                      ],
+
+                          const SizedBox(height: 20),
+                        ],
+                      ),
                     ),
                   ),
 
                   // --------------- PAGE 2 ------------------
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 20),
 
-                        Image.asset(
-                          "assets/images/onboarding2.png",
-                          height: 360,
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        const Text(
-                          "The perfect ride is just a tap away!",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
+                          Image.asset(
+                            "assets/images/onboarding2.png",
+                            height: size.height * 0.35,
                           ),
-                        ),
 
-                        const SizedBox(height: 12),
+                          const SizedBox(height: 20),
 
-                        Text(
-                          "Your journey begins with Ryde. Find your ideal ride effortlessly.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey.shade700,
+                          const Text(
+                            "The perfect ride is just a tap away!",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+
+                          const SizedBox(height: 12),
+
+                          Text(
+                            "Your journey begins with Ryde. Find your ideal ride effortlessly.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+
+                          const SizedBox(height: 20),
+                        ],
+                      ),
                     ),
                   ),
 
                   // --------------- PAGE 3 ------------------
                   Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 20),
 
-                        Image.asset(
-                          "assets/images/onboarding3.png",
-                          height: 360,
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        const Text(
-                          "Your ride, your way.\nLet's get started!",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
+                          Image.asset(
+                            "assets/images/onboarding3.png",
+                            height: size.height * 0.35,
                           ),
-                        ),
 
-                        const SizedBox(height: 12),
+                          const SizedBox(height: 20),
 
-                        Text(
-                          "Enter your destination, sit back, and let us take care of the rest.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey.shade700,
+                          const Text(
+                            "Your ride, your way.\nLet's get started!",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
+
+                          const SizedBox(height: 12),
+
+                          Text(
+                            "Enter your destination, sit back, and let us take care of the rest.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey.shade700,
+                            ),
+                          ),
+
+                          const SizedBox(height: 20),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -203,7 +231,9 @@ class _OnboardingPagesState extends State<OnboardingPages> {
                   } else {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => GetStartedPage()),
+                      MaterialPageRoute(
+                        builder: (context) => const GetStartedPage(),
+                      ),
                     );
                   }
                 },
